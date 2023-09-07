@@ -10,11 +10,12 @@ import java.util.UUID;
 
 @Getter
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-public final class Course {
+@NoArgsConstructor
+public final class Role {
+
     @Id
-    private UUID courseId;
-    private String courseName;
+    private UUID roleId;
+    private String role;
 
 }

@@ -17,14 +17,17 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security' // spring security
+	//implementation 'org.hibernate.validator:hibernate-validator' // hibernate validation
+	implementation 'javax.validation:validation-api:2.0.1.Final' // javax validation
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	//TODO change to a newer version
-	implementation 'mysql:mysql-connector-java:5.0.2' //old db
+	implementation 'mysql:mysql-connector-java:8.0.28' // updated db version
 	runtimeOnly 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok:1.18.28'
 	annotationProcessor 'org.projectlombok:lombok:1.18.28'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test' // spring security
 	testCompileOnly 'org.projectlombok:lombok:1.18.28'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
 }

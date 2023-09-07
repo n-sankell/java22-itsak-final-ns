@@ -18,4 +18,5 @@ public class FinalApplication {
 	public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
 		return entityManagerFactory.createEntityManager();
 	}
+
 }

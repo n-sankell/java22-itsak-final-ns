@@ -1,14 +1,24 @@
 package com.example.demo.data;
 
-import lombok.Data;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
+@Getter
 @Entity
-@Data
-public class Activity {
+@NoArgsConstructor
+@AllArgsConstructor
+public final class Activity {
     @Id
-    private int activityId;
-    private int studentId;
+    private UUID activityId;
+    @Column(unique = true)
     private String activityName;
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
+    }
+
 }
