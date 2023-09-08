@@ -45,12 +45,11 @@ public class StudentService implements UserDetailsService {
     }
 
     public ResponseEntity<?> userLogin(LoginRequest loginRequest) {
-        System.out.println(loginRequest.username());
         if (studentRepository.existsByUserName(loginRequest.username())) {
             Student student = studentRepository.findStudentByUserName(loginRequest.username());
-            System.out.println(student.getName());
 
-            if (passwordEncoder.matches(student.getPassword(), loginRequest.password())) {
+            if (passwordEncoder.matches(loginRequest.password(), student.getPassword())) {
+
                 String token = getAccessToken(student, System.currentTimeMillis());
 
                 return status(OK).body(token);

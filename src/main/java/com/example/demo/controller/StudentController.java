@@ -27,8 +27,7 @@ public class StudentController {
 
     // Test Case 1: Data Access - Student
     @GetMapping("/private/student")
-    public ResponseEntity<?> getStudentByUsername(
-            @RequestHeader(value = "Authorization") String authHeader, @RequestParam @AlphaNumeric String username) {
+    public ResponseEntity<?> getStudentByUsername(@RequestParam @AlphaNumeric String username) {
         if (!isValid(username)) {
             throw new ValidationException("No special characters allowed. ", HttpStatus.BAD_REQUEST);
         }

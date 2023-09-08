@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.example.demo.data.Role;
 import com.example.demo.data.Student;
 import com.example.demo.repository.StudentRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +24,7 @@ public class TokenUtil {
     public static String getAccessToken(Student student, Long current) {
         return JWT.create().withSubject(student.getUserName())
                 .withExpiresAt(accessTokenLimit(current))
-                .withClaim(ROLE, student.getRoles())
+                .withClaim(ROLE, student.getRoles().stream().map(Role::getRole).toList())
                 .sign(ALGORITHM);
     }
 
@@ -50,7 +51,7 @@ public class TokenUtil {
         }
     }
 
-    public static final Algorithm ALGORITHM = Algorithm.HMAC256("this-is-not-here".getBytes());
+    public static final Algorithm ALGORITHM = Algorithm.HMAC256("thisisnothere".getBytes());
 
     public static Date accessTokenLimit(Long current) {
         return new Date(current + 10 * 60 * 1000);
