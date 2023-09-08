@@ -4,11 +4,13 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.example.demo.constants.Constants;
 import com.example.demo.data.Role;
 import com.example.demo.data.Student;
 import com.example.demo.repository.StudentRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -51,7 +53,7 @@ public class TokenUtil {
         }
     }
 
-    public static final Algorithm ALGORITHM = Algorithm.HMAC256("thisisnothere".getBytes());
+    public static final Algorithm ALGORITHM = Algorithm.HMAC256(ALG_SE.getBytes());
 
     public static Date accessTokenLimit(Long current) {
         return new Date(current + 10 * 60 * 1000);
