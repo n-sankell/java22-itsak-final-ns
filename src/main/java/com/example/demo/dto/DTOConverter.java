@@ -27,7 +27,7 @@ public class DTOConverter {
     }
 
     public static PrivateStudentDTO convertPrivate(Student student) {
-        return new PrivateStudentDTO(student.getName(), student.getGender(), student.getPersonalIdentityNumber(), student.getPhoneNumber(),
+        return new PrivateStudentDTO(student.getUserName(), student.getName(), student.getGender(), student.getPersonalIdentityNumber(), student.getPhoneNumber(),
                 student.getAllergies().stream().map(DTOConverter::convert).toList(),
                 student.getActivities().stream().map(DTOConverter::convert).toList());
     }

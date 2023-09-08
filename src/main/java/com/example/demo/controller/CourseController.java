@@ -5,6 +5,7 @@ import com.example.demo.exception.ValidationException;
 import com.example.demo.service.CourseService;
 import com.example.demo.validator.AlphaNumeric;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,15 +26,15 @@ public class CourseController {
 
     // Test Case 2: Show Course List
     @GetMapping("/public/courses")
-    public ResponseEntity<List<CourseDTO>> getCourses() {
+    public ResponseEntity<?> getCourses() {
         return ResponseEntity.ok(courseService.getCourses());
     }
 
     // Test Case 4: Search - Course
     @GetMapping("/public/search/course")
-    public ResponseEntity<List<CourseDTO>> searchCourse(@RequestParam @AlphaNumeric String name) {
+    public ResponseEntity<?> searchCourse(@RequestParam @AlphaNumeric String name) {
         if (!isValid(name)) {
-            throw new ValidationException("No special characters allowed. ");
+            throw new ValidationException("No special characters allowed. ", HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(courseService.searchCourse(name));
     }
